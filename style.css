@@ -74,6 +74,38 @@ p.lede { font-size: 1.1rem; }
 
 .muted { color: var(--muted); }
 
+/* Mac App Store badge.
+   Apple's graphic standards (App Store Marketing Resources and Identity
+   Guidelines, read July 31, 2026):
+   - Minimum onscreen height is 40 px. The artwork is natively 156.1 x 40,
+     so it is placed at exactly 1:1 and never scaled.
+   - Minimum clear space is one-quarter of the badge height = 10 px. The
+     margins below are 16 px, comfortably outside that.
+   - "Don't modify, angle, or animate the App Store badge." Hence no hover
+     transform, opacity shift, filter or transition anywhere in this rule.
+   - The grey border is part of the artwork and is what lets the preferred
+     black badge sit on a dark background, so no light/dark swap is needed. */
+.badge-row { margin: 1.4rem 0 1rem; }
+
+a.badge {
+  display: inline-block;
+  line-height: 0;          /* no descender gap under the artwork */
+  margin: 16px 16px 16px 0;
+}
+
+a.badge img {
+  width: 156px;
+  height: 40px;
+  display: block;
+}
+
+/* Focus ring sits 12 px out, i.e. beyond the 10 px clear space. */
+a.badge:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 12px;
+  border-radius: 2px;
+}
+
 footer.site {
   border-top: 1px solid var(--rule);
   color: var(--muted);
